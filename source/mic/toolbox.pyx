@@ -438,7 +438,7 @@ def corr_perm(
     # -- Get absolute correlations with conditioning variables
     corr_cur = np.zeros(len(var_cur))
     for i in range(len(var_cur)):
-        corr = scistats.pearsonr(y,x[:,i])
+        corr = tuple(scistats.pearsonr(y,x[:,i]))
         corr_cur[i] = abs(corr[0])
 
     if len(var_cur) == 0:
@@ -452,7 +452,7 @@ def corr_perm(
     for i in range(lags):
         Ldata = L*Ldata
         for j in range(N):
-            corr = scistats.pearsonr(y,Ldata[:,j])
+            corr = tuple(scistats.pearsonr(y,Ldata[:,j]))
             corr_lag[i,j] = abs(corr[0])
 
     # Initialise display
